@@ -1,0 +1,53 @@
+{
+  "type": "network",
+  "version": "1.0",
+  "data": "data.json",
+  "logo": {
+    "text": "Adamrmor",
+    "file": "",
+    "link": "https://www.google.co.nz/url?sa\u003dt\u0026rct\u003dj\u0026q\u003d\u0026esrc\u003ds\u0026source\u003dweb\u0026cd\u003d1\u0026cad\u003drja\u0026uact\u003d8\u0026ved\u003d0ahUKEwjFycXtt6PNAhXGNJQKHbVLASAQFgggMAA\u0026url\u003dhttps%3A%2F%2Fnatlib.govt.nz%2Fiwi-hapu-names\u0026usg\u003dAFQjCNHK1iRcKYzGt0DIQ7tV6LjZkzndqg\u0026sig2\u003dFnOG0DtqF4dO6OAEH_vRtg\u0026bvm\u003dbv.124272578,d.dGo"
+  },
+  "text": {
+    "title": "Visualising the National Library NZ Iwi Hapu Name list",
+    "more": "",
+    "intro": ""
+  },
+  "legend": {
+    "edgeLabel": "Relationship",
+    "colorLabel": "Groups",
+    "nodeLabel": "Iwi / Hapu / Waka"
+  },
+  "features": {
+    "search": true,
+    "groupSelectorAttribute": "color",
+    "hoverBehavior": "dim"
+  },
+  "informationPanel": {
+    "imageAttribute": false,
+    "groupByEdgeDirection": false
+  },
+  "sigma": {
+    "graphProperties": {
+      "minEdgeSize": 0.2,
+      "maxNodeSize": 7,
+      "maxEdgeSize": 0.5,
+      "minNodeSize": 1
+    },
+    "drawingProperties": {
+      "labelThreshold": 10,
+      "hoverFontStyle": "bold",
+      "defaultEdgeType": "curve",
+      "defaultLabelColor": "#000",
+      "defaultLabelHoverColor": "#fff",
+      "defaultLabelSize": 14,
+      "activeFontStyle": "bold",
+      "fontStyle": "bold",
+      "defaultHoverLabelBGColor": "#002147",
+      "defaultLabelBGColor": "#ddd"
+    },
+    "mouseProperties": {
+      "minRatio": 0.75,
+      "maxRatio": 20
+    }
+  }
+}
