@@ -1,0 +1,33 @@
+﻿<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="css/search_widget_generic.css"/>
+</head>
+<body>
+  <div style="width:200px;">
+    <div id="dnz_search">
+      <h3>Search</h3>
+      <form accept-charset="UNKNOWN" action="http://www.digitalnz.org/records" enctype="application/x-www-form-urlencoded" id="dnz_search_form" method="get">
+        <p id="dnz_fields">
+          <input id="dnz_search_field" name="search_text" size="20" type="text">
+          <input id="dnz_search_submit" size="20" type="submit" value="Go">
+        </p>
+      </form>
+      <img id="logo" src="img/powered.gif" alt="Powered by Digital NZ">
+    </div>
+      <script src="js/dnz_search_widget.js" type="text/javascript"></script>
+      <script type="text/javascript"> 
+        function DNZOptions() { 
+          DNZSearch.APIDomain = 'http://api.digitalnz.org/'; 
+          DNZSearch.hostedDomain = 'http://www.digitalnz.org/'; 
+          // Please add your DigitalNZ API key below in the function parameter DNZSearch.APIKey = 'YOUR_API_KEY'
+          DNZSearch.APIKey = ''; 
+          // You can choose a stylesheet from css folder and add to DNZSearch.stylesheet. Default is widget_red.css 
+          DNZSearch.stylesheet = 'widget_red.css';
+          // The number of results displays in search.
+          DNZSearch.numberOfResults = 4; 
+        }
+      </script>
+    </div>
+  </div>
+
+</html>
