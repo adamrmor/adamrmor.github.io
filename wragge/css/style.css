@@ -16,7 +16,7 @@
 }
 .wrapper .overlay-container::before {
   content: attr(data-overlay-text);
-  font: 1em/1.5em 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font: 0.5em/0.8em 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: absolute;
   z-index: 1;
   /*On top of parent*/
