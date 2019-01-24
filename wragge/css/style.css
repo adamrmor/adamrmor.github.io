@@ -1,64 +1,127 @@
-.wrapper {
-  max-width: 80em;
-  margin: 0 auto;
+:root{
+  --main-width: 120px;
+  --main-height: 40px;
+  --dot-width: 20px;
+  --dot-height: 20px;
+  --delay: 0.4s;
+  --dot-color1:#008744;
+  --dot-color2:#d62d20;
+  --dot-color3:#ffa700;
 }
-.wrapper li {
-  display: inline-block;
-  overflow: hidden;
-  max-height: 200px;
-}
-.wrapper img {
-  max-width: 200px;
-}
-.wrapper .overlay-container {
-  display: block;
-  position: relative;
-}
-.wrapper .overlay-container::before {
-  content: attr(data-overlay-text);
-  font: 0.5em/0.8em 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+#container {
   position: absolute;
-  z-index: 1;
-  /*On top of parent*/
-  top: 40%;
-  width: 100%;
-  text-align: center;
-  color: #fff;
-  background: rgba(128, 128, 128, 0.8);
+  width: var(--main-width);
+  height: var(--main-height);
+  top: calc(50vh - calc(var(--main-height)/2));
+  left: calc(50vw - calc(var(--main-width)/2));
+}
+.dot {
+  position: relative;
+  display: inline-block;
+  width: calc(var(--main-width)/6);
+  height: calc(var(--main-height)/2);
+  background-color: rgba(128,128,128,0);
+  border-radius: 50%;
+  margin: calc(5 * var(--main-width)/50);
+  animation: scale 1.8s infinite;
+}
+#dot1 {
+  animation-delay: 0s;
+  background-color: var(--dot-color1);
   opacity: 0;
-  -moz-transform: translateY(0);
-  -ms-transform: translateY(0);
-  -o-transform: translateY(0);
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
 }
-.wrapper .overlay-container:hover::before {
-  opacity: 1;
-  -moz-transform: translateY(20px);
-  -ms-transform: translateY(20px);
-  -o-transform: translateY(20px);
-  -webkit-transform: translateY(20px);
-  transform: translateY(20px);
+#dot2{
+  animation-delay: calc(var(--delay)*1);
+  background-color: var(--dot-color2);
+  opacity:0;
 }
-.wrapper .overlay-container .overlay-img {
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  -o-transform: scale(1);
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+#dot3{
+  animation-delay: calc(var(--delay)*2);
+  background-color: var(--dot-color3);
+  opacity:0;
 }
-.wrapper .overlay-container:hover .overlay-img {
-  -moz-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  -o-transform: scale(1.2);
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
+.blur-up {
+	-webkit-filter: blur(15px);
+	filter: blur(15px);
+	transition: filter 400ms, -webkit-filter 400ms;
+}
+
+.blur-up.lazyloaded {
+	-webkit-filter: blur(0);
+	filter: blur(0);
+}
+@keyframes scale {
+  0% {
+   opacity:0.1;
+  }
+  50% {
+   opacity:1;
+  }
+  100% {
+   opacity:0.1;
+  }
+}
+.wrapper {
+  max-width: 120em;
+  margin: 0 auto;
+  li {
+    display: inline-block;
+    overflow: hidden;
+    max-height: 500px;
+  }
+  img {
+    max-width: 500px;
+  }
+  .overlay-container {
+    display: block;
+    position: relative;
+    &::before {
+      content: attr(data-overlay-text);
+      font: 1em/1.5em 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      position: absolute;
+      z-index: 1;
+      /*On top of parent*/
+      top: 40%;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      background: rgba(128, 128, 128, 0.80);
+      opacity: 0;
+      -moz-transform: translateY(0);
+      -ms-transform: translateY(0);
+      -o-transform: translateY(0);
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+      -moz-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+    &:hover::before {
+      opacity: 1;
+      -moz-transform: translateY(20px);
+      -ms-transform: translateY(20px);
+      -o-transform: translateY(20px);
+      -webkit-transform: translateY(20px);
+      transform: translateY(20px);
+    }
+    .overlay-img {
+      -moz-transform: scale(1);
+      -ms-transform: scale(1);
+      -o-transform: scale(1);
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      -moz-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+    &:hover .overlay-img {
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+  }
 }
