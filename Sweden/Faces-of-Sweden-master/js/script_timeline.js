@@ -544,7 +544,7 @@ function drawVisualisation(data) {
                 return timeline.y - (timeline.img_width / 2);
             })
             .attr('xlink:href', function (d) {
-                return d['ns1:thumbnail'].substring(0, d['ns1:thumbnail'].length - 7) + "600x600";
+                return d['ns1:thumbnail'].substring(0, d['ns1:thumbnail']";
             })
             .attr('data-id', function (d) {
                 return d["@id"];
