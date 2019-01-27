@@ -544,7 +544,7 @@ function drawVisualisation(data) {
                 return timeline.y - (timeline.img_width / 2);
             })
             .attr('xlink:href', function (d) {
-                return d['ns1:thumbnail'].substring(0, d['ns1:thumbnail']";
+                return d['ns1:thumbnail'].substring(0, d['ns1:thumbnail'].length - 7) + "600x600";
             })
             .attr('data-id', function (d) {
                 return d["@id"];
@@ -899,7 +899,7 @@ function visualise_data_as_tiles(data) {
                 tile_date = String(d.date.earliest) + "-" + String(d.date.latest);
             };
 
-            return '<img style="width:150px;" src="' + d['ns1:thumbnail'].substring(0, d['ns1:thumbnail']"><p class="img_caption" style="width:150px; color: white;">' + tile_date + '</p>';
+            return '<img style="width:150px;" src="' + d['ns1:thumbnail'].substring(0, d['ns1:thumbnail'].length - 7) + '600x600"><p class="img_caption" style="width:150px; color: white;">' + tile_date + '</p>';
         }).on("click", function (d) {
             launch_lightbox(d['ns1:thumbnail'].substring(0, d['ns1:thumbnail'].length - 7) + "1200x1200", d3.select(this));
 
