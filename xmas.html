@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museum Staff Christmas Countdown</title>
+    <style>
+        /* This section controls the design (CSS) */
+        body {
+            background-color: #b3000c; /* Festive Red */
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 5vh; /* Responsive text size */
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 2px solid #ffd700; /* Gold border */
+        }
+
+        /* The GIF styling */
+        .mariah-gif {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 4px solid #ffffff;
+        }
+
+        /* The Countdown Timer Styling */
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .time-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .number {
+            font-size: 6vh;
+            font-weight: bold;
+            background: #fff;
+            color: #b3000c;
+            padding: 10px 20px;
+            border-radius: 10px;
+            min-width: 60px;
+        }
+
+        .label {
+            font-size: 2vh;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Footer message */
+        .footer {
+            margin-top: 20px;
+            font-size: 2vh;
+            color: #ffd700; /* Gold text */
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Time Until Christmas</h1>
+        
+        <img src="https://media.giphy.com/media/xUPGchmZ4T158jX4JO/giphy.gif" alt="Mariah Carey" class="mariah-gif">
+
+        <div id="countdown">
+            <div class="time-box">
+                <span class="number" id="days">00</span>
+                <span class="label">Days</span>
+            </div>
+            <div class="time-box">
+                <span class="number" id="hours">00</span>
+                <span class="label">Hours</span>
+            </div>
+            <div class="time-box">
+                <span class="number" id="minutes">00</span>
+                <span class="label">Mins</span>
+            </div>
+            <div class="time-box">
+                <span class="number" id="seconds">00</span>
+                <span class="label">Secs</span>
+            </div>
+        </div>
+
+        <p class="footer">🎶 All I Want For Christmas Is You... 🎶</p>
+    </div>
+
+    <script>
+        // This section controls the Logic (JavaScript)
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+
+        // Calculate target date (Dec 25 of the current year)
+        const currentYear = new Date().getFullYear();
+        const xmasTime = new Date(`December 25, ${currentYear} 00:00:00`).getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const gap = xmasTime - now;
+
+            // Math to calculate time units
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+
+            const d = Math.floor(gap / day);
+            const h = Math.floor((gap % day) / hour);
+            const m = Math.floor((gap % hour) / minute);
+            const s = Math.floor((gap % minute) / second);
+
+            // Update the HTML
+            daysEl.innerText = d;
+            hoursEl.innerText = h < 10 ? '0' + h : h;
+            minutesEl.innerText = m < 10 ? '0' + m : m;
+            secondsEl.innerText = s < 10 ? '0' + s : s;
+        }
+
+        // Run the function every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Run immediately on load
+    </script>
+</body>
+</html>
