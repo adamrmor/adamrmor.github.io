@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Museum Staff Christmas Countdown</title>
+    <title>Museum Staff New Year Countdown</title>
     <style>
         /* This section controls the design (CSS) */
         body {
-            background-color: #b3000c; /* Festive Red */
+            /* Changed from Red to Midnight Blue for NYE vibe */
+            background-color: #0f172a; 
+            background-image: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
             color: #ffffff;
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -20,30 +22,31 @@
         }
 
         h1 {
-            font-size: 5vh; /* Responsive text size */
+            font-size: 5vh;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Gold glow */
             text-align: center;
         }
 
         .container {
             text-align: center;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.1); /* Glass effect */
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border: 2px solid #ffd700; /* Gold border */
+            backdrop-filter: blur(5px);
         }
 
         /* The GIF styling */
-        .mariah-gif {
+        .nye-gif {
             width: 300px;
             height: auto;
             border-radius: 10px;
             margin-bottom: 30px;
-            border: 4px solid #ffffff;
+            border: 4px solid #ffd700; /* Gold border around GIF */
         }
 
         /* The Countdown Timer Styling */
@@ -63,23 +66,26 @@
             font-size: 6vh;
             font-weight: bold;
             background: #fff;
-            color: #b3000c;
+            color: #0f172a; /* Dark blue text inside box */
             padding: 10px 20px;
             border-radius: 10px;
             min-width: 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .label {
             font-size: 2vh;
             margin-top: 10px;
             text-transform: uppercase;
+            color: #ffd700; /* Gold labels */
+            letter-spacing: 1px;
         }
 
         /* Footer message */
         .footer {
             margin-top: 20px;
-            font-size: 2vh;
-            color: #ffd700; /* Gold text */
+            font-size: 1.5vh;
+            color: #aaa;
             font-style: italic;
         }
     </style>
@@ -87,9 +93,9 @@
 <body>
 
     <div class="container">
-        <h1>Holiday Countdown</h1>
+        <h1>Counting down to <span id="next-year-display"></span></h1>
         
-        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXp0YzY2bjlkaHQwbHM4aGN6a29teWx2Y3BvajkzaTE1cGxpbGQxZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ABPYR9xUWHPsBH9A6y/giphy.gif" alt="Mariah Carey" class="mariah-gif">
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXJ2NHBvdnJsbXF5dWhiNmNlNDVkMmU5dmFjNDc4cTd3YzR6dDg0bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Bus6HsNdFtpuPpDtcD/giphy.gif" alt="Happy New Year" class="nye-gif">
 
         <div id="countdown">
             <div class="time-box">
@@ -109,6 +115,8 @@
                 <span class="label">Secs</span>
             </div>
         </div>
+        
+        <div class="footer">Museum Staff Dashboard</div>
     </div>
 
     <script>
@@ -117,14 +125,20 @@
         const hoursEl = document.getElementById('hours');
         const minutesEl = document.getElementById('minutes');
         const secondsEl = document.getElementById('seconds');
+        const yearDisplay = document.getElementById('next-year-display');
 
-        // Calculate target date (Dec 25 of the current year)
+        // Logic to calculate the NEXT Jan 1st
         const currentYear = new Date().getFullYear();
-        const xmasTime = new Date(`December 25, ${currentYear} 00:00:00`).getTime();
+        const nextYear = currentYear + 1;
+        
+        // Update the header to show the year we are waiting for
+        yearDisplay.innerText = nextYear;
+
+        const newYearTime = new Date(`January 1, ${nextYear} 00:00:00`).getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
-            const gap = xmasTime - now;
+            const gap = newYearTime - now;
 
             // Math to calculate time units
             const second = 1000;
