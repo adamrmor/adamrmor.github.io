@@ -22,12 +22,12 @@
         }
 
         h1 {
-            font-size: 6vh; /* Larger text since there is no timer */
+            font-size: 6vh;
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 3px;
             color: #ffd700; /* Gold Text */
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6); /* Glowing effect */
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
             text-align: center;
             line-height: 1.2;
         }
@@ -41,11 +41,11 @@
 
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.05); /* Very subtle glass effect */
-            padding: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
             border-radius: 30px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            border: 2px solid #ffd700; /* Gold border */
+            border: 2px solid #ffd700;
             backdrop-filter: blur(10px);
             max-width: 90%;
         }
@@ -53,7 +53,7 @@
         /* The GIF styling */
         .nye-gif {
             width: 100%;
-            max-width: 400px; /* Made slightly larger */
+            max-width: 500px; /* Made it a bit bigger for impact */
             height: auto;
             border-radius: 15px;
             border: 3px solid #ffffff;
@@ -73,4 +73,17 @@
 
     <div class="container">
         <h1>Happy New Year!</h1>
-        <div
+        <div class="subtitle">Welcome to <span id="current-year"></span></div>
+        
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXJ2NHBvdnJsbXF5dWhiNmNlNDVkMmU5dmFjNDc4cTd3YzR6dDg0bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Bus6HsNdFtpuPpDtcD/giphy.gif" alt="Happy New Year Fireworks" class="nye-gif">
+
+        <div class="footer">Museum Staff Dashboard</div>
+    </div>
+
+    <script>
+        const yearEl = document.getElementById('current-year');
+        const currentYear = new Date().getFullYear();
+        yearEl.innerText = currentYear;
+    </script>
+</body>
+</html>
