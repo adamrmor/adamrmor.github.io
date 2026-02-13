@@ -8,11 +8,13 @@
         :root {
             --primary-bg: #0f172a;
             --accent-gold: #ffd700;
-            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-bg: rgba(30, 41, 59, 0.8);
             --text-main: #f1f5f9;
             --text-dim: #94a3b8;
-            --border-color: rgba(255, 215, 0, 0.15);
+            --border-color: rgba(255, 215, 0, 0.2);
             --success: #10b981;
+            --trend-up: #4ade80;
+            --trend-down: #f87171;
         }
 
         body {
@@ -24,26 +26,27 @@
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             margin: 0;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             padding: 20px;
         }
 
+        .dashboard-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
         .dashboard-card {
-            width: 100%;
-            max-width: 800px;
             padding: 2rem;
             background: var(--card-bg);
             backdrop-filter: blur(20px);
             border-radius: 1.5rem;
             border: 1px solid var(--border-color);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            margin-bottom: 2rem;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .header-label {
@@ -56,262 +59,272 @@
             display: block;
         }
 
-        h1 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin: 0;
+        h1 { font-size: 1.75rem; font-weight: 600; margin: 0; }
+        
+        .month-focus-title {
+            text-align: center;
+            font-size: 1.25rem;
+            color: var(--accent-gold);
+            margin-bottom: 2rem;
+            font-weight: 500;
         }
 
-        .main-stats {
+        .comparison-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
-        .stat-box {
-            background: rgba(15, 23, 42, 0.5);
+        .comp-card {
+            background: rgba(15, 23, 42, 0.6);
             padding: 1.5rem;
-            border-radius: 1rem;
+            border-radius: 1.25rem;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: center;
         }
 
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: 800;
-            display: block;
-            color: #fff;
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
+        .comp-header {
+            font-size: 0.85rem;
             color: var(--text-dim);
             text-transform: uppercase;
-            margin-top: 0.5rem;
-            display: block;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+
+        .main-val {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .trend-badge {
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .trend-up { background: rgba(16, 185, 129, 0.1); color: var(--trend-up); }
+        .trend-down { background: rgba(239, 68, 68, 0.1); color: var(--trend-down); }
+
+        .sub-stats {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+
+        .sub-label { color: var(--text-dim); }
+        .sub-val { color: var(--text-main); font-weight: 600; }
 
         .usage-table-container {
             background: rgba(0, 0, 0, 0.2);
             border-radius: 1rem;
-            padding: 1rem;
-            margin-top: 1rem;
-            overflow-x: auto;
-            min-height: 200px;
+            padding: 1.5rem;
+            margin-top: 2rem;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.875rem;
-            text-align: left;
-        }
+        h2 { font-size: 1.1rem; color: var(--accent-gold); margin-top: 0; margin-bottom: 1rem; }
 
-        th {
-            color: var(--accent-gold);
-            padding: 0.75rem;
-            border-bottom: 1px solid var(--border-color);
-            font-weight: 600;
-        }
-
-        td {
-            padding: 0.75rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-main);
-        }
-
-        tr:last-child td { border-bottom: none; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; }
+        th { color: var(--text-dim); padding: 0.75rem; border-bottom: 1px solid var(--border-color); font-weight: 500; }
+        td { padding: 0.75rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
 
         .status-footer {
             margin-top: 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--text-dim);
-            padding: 0 0.5rem;
         }
 
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            background: var(--success);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--success);
-        }
-
-        .loading-text {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-dim);
-            font-style: italic;
-        }
+        .status-indicator { display: flex; align-items: center; gap: 8px; }
+        .dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; box-shadow: 0 0 10px var(--success); }
 
         @media (max-width: 600px) {
-            .main-stats { grid-template-columns: 1fr; }
-            .stat-value { font-size: 2rem; }
+            .comparison-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="dashboard-card">
-        <div class="header">
-            <span class="header-label">Institutional Overview</span>
-            <h1>South Australian Museum (in22)</h1>
-        </div>
-        
-        <div class="main-stats">
-            <div class="stat-box">
-                <span id="total-records" class="stat-value">...</span>
-                <span class="stat-label">Total ALA Records</span>
+    <div class="dashboard-container">
+        <div class="dashboard-card">
+            <div class="header">
+                <span class="header-label">Institutional Monthly Performance</span>
+                <h1>South Australian Museum (in22)</h1>
             </div>
-            <div class="stat-box">
-                <span id="monthly-downloads" class="stat-value">...</span>
-                <span class="stat-label">Total Download Events</span>
-            </div>
-        </div>
 
-        <div class="usage-table-container" id="table-container">
-            <div class="loading-text" id="loading">Syncing with ALA Logger...</div>
-            <table id="usage-table" style="display:none;">
-                <thead>
-                    <tr>
-                        <th>Usage Category</th>
-                        <th style="text-align: right;">Download Events</th>
-                        <th style="text-align: right;">Records</th>
-                    </tr>
-                </thead>
-                <tbody id="usage-body">
-                    <!-- Data populated by JS -->
-                </tbody>
-            </table>
-        </div>
+            <div class="month-focus-title" id="focus-date">February 2026 vs 2025</div>
+            
+            <div class="comparison-grid">
+                <!-- Events Comparison -->
+                <div class="comp-card">
+                    <div class="comp-header">
+                        <span>Download Events</span>
+                        <span id="events-trend" class="trend-badge">...</span>
+                    </div>
+                    <div id="events-this-month" class="main-val">0</div>
+                    <div class="sub-stats">
+                        <span class="sub-label">This Month last year</span>
+                        <span id="events-last-year" class="sub-val">0</span>
+                    </div>
+                </div>
 
-        <div class="status-footer">
-            <div class="status-indicator">
-                <div class="dot"></div>
-                <span>Live Data Sync Active</span>
+                <!-- Records Comparison -->
+                <div class="comp-card">
+                    <div class="comp-header">
+                        <span>Records Downloaded</span>
+                        <span id="records-trend" class="trend-badge">...</span>
+                    </div>
+                    <div id="records-this-month" class="main-val">0</div>
+                    <div class="sub-stats">
+                        <span class="sub-label">This Month last year</span>
+                        <span id="records-last-year" class="sub-val">0</span>
+                    </div>
+                </div>
             </div>
-            <span id="last-update">Last checked: Just now</span>
+
+            <div class="usage-table-container">
+                <h2>Top Download Reasons (This Month)</h2>
+                <table id="reason-table">
+                    <thead>
+                        <tr>
+                            <th>Reason for Download</th>
+                            <th style="text-align: right;">Events</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reason-body">
+                        <tr><td colspan="2" style="text-align:center; padding: 2rem; color: var(--text-dim);">Analyzing current usage...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="status-footer">
+                <div class="status-indicator">
+                    <div class="dot"></div>
+                    <span>Direct Comparison Active</span>
+                </div>
+                <span id="last-update">Syncing...</span>
+            </div>
         </div>
     </div>
 
     <script>
-        // CONFIGURATION: 
-        // 1. Create a Google Sheet.
-        // 2. In A1, enter: =IMPORTDATA("https://logger.ala.org.au/service/reasonBreakdownCSV?eventId=1002&entityUid=in22")
-        // 3. File > Share > Publish to web.
-        // 4. Select "Whole Document" and "CSV". 
-        // 5. Paste that generated URL below:
-        const GOOGLE_SHEET_CSV_URL = ''; 
+        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRKi-J7SQfuAHmb2XpMhRVZ_uVYrst6WhWwC3wVmHfyMN8eq8BRIEb3pL7qNFDpkvQjGBMoWA_tClR_/pub?gid=0&single=true&output=csv'; 
 
-        async function fetchLiveTotal() {
-            const counter = document.getElementById('total-records');
-            const apiUrl = 'https://biocache-ws.ala.org.au/ws/occurrences/search?q=collection_uid:in22&pageSize=0';
-            
+        // Targeted focus: Feb 2026 vs Feb 2025
+        const TARGET_YEAR = 2026;
+        const TARGET_MONTH = 2; // February
+
+        async function processData() {
             try {
-                const response = await fetch(apiUrl);
-                if (response.ok) {
-                    const data = await response.json();
-                    if(data.totalRecords) {
-                        counter.innerText = data.totalRecords.toLocaleString();
+                const response = await fetch(CSV_URL);
+                const csvText = await response.text();
+                const lines = csvText.split(/\r?\n/).filter(line => line.trim().length > 0);
+                
+                let statsThisMonth = { events: 0, records: 0, reasons: {} };
+                let statsLastYear = { events: 0, records: 0 };
+
+                for (let i = 1; i < lines.length; i++) {
+                    const row = parseCSVLine(lines[i]);
+                    if (row.length < 4) continue;
+
+                    const year = parseInt(row[0]);
+                    const month = parseInt(row[1]);
+                    const reason = row[2]?.trim() || "Other";
+                    const events = parseInt(row[3].replace(/[^0-9]/g, '')) || 0;
+                    const records = parseInt(row[4]?.replace(/[^0-9]/g, '')) || 0;
+
+                    // Match This Month (2026-2)
+                    if (year === TARGET_YEAR && month === TARGET_MONTH) {
+                        statsThisMonth.events += events;
+                        statsThisMonth.records += records;
+                        statsThisMonth.reasons[reason] = (statsThisMonth.reasons[reason] || 0) + events;
+                    }
+
+                    // Match Same Month Last Year (2025-2)
+                    if (year === (TARGET_YEAR - 1) && month === TARGET_MONTH) {
+                        statsLastYear.events += events;
+                        statsLastYear.records += records;
                     }
                 }
-            } catch (error) {
-                console.error('Fetch failed:', error);
-                counter.innerText = "573,941+"; // Fallback
-            }
-        }
 
-        async function fetchUsageData() {
-            const usageBody = document.getElementById('usage-body');
-            const table = document.getElementById('usage-table');
-            const loading = document.getElementById('loading');
-            const downloadCounter = document.getElementById('monthly-downloads');
-            
-            // If URL is not set yet, we show the fallback data from your manual snippet
-            if (!GOOGLE_SHEET_CSV_URL) {
-                console.log("No Google Sheet URL provided. Using initial snapshot.");
-                renderFallback();
-                return;
-            }
-
-            try {
-                const response = await fetch(GOOGLE_SHEET_CSV_URL);
-                const csvText = await response.text();
-                const lines = csvText.split('\n').filter(line => line.trim() !== '');
-                
-                // Assuming CSV structure: Reason, Events, Records
-                let totalEvents = 0;
-                let html = '';
-                
-                // Skip header (i=1)
-                for (let i = 1; i < lines.length; i++) {
-                    const [reason, events, records] = lines[i].split(',');
-                    if (!reason) continue;
-                    
-                    totalEvents += parseInt(events) || 0;
-                    html += `<tr>
-                        <td>${reason.replace(/"/g, '')}</td>
-                        <td style="text-align: right;">${parseInt(events).toLocaleString()}</td>
-                        <td style="text-align: right;">${parseInt(records).toLocaleString()}</td>
-                    </tr>`;
-                }
-
-                usageBody.innerHTML = html;
-                downloadCounter.innerText = totalEvents.toLocaleString();
-                loading.style.display = 'none';
-                table.style.display = 'table';
-                document.getElementById('last-update').innerText = 'Last Sync: ' + new Date().toLocaleTimeString();
+                updateUI(statsThisMonth, statsLastYear);
 
             } catch (e) {
-                console.error("CSV sync failed", e);
-                renderFallback();
+                console.error("Data processing failed:", e);
+                document.getElementById('last-update').innerText = 'Data Sync Error';
             }
         }
 
-        function renderFallback() {
-            const usageBody = document.getElementById('usage-body');
-            const table = document.getElementById('usage-table');
-            const loading = document.getElementById('loading');
-            const downloadCounter = document.getElementById('monthly-downloads');
-
-            // Fallback content from previous query
-            const fallback = [
-                ["Scientific research", "4,761", "2,227,540"],
-                ["Conservation management", "53", "104,827"],
-                ["Ecological research", "59", "69,562"],
-                ["Environmental assessment", "123", "8,382"],
-                ["Education", "31", "12,859"],
-                ["Citizen science", "20", "7,272"]
-            ];
-
-            let html = '';
-            fallback.forEach(row => {
-                html += `<tr><td>${row[0]}</td><td style="text-align: right;">${row[1]}</td><td style="text-align: right;">${row[2]}</td></tr>`;
-            });
-
-            usageBody.innerHTML = html;
-            downloadCounter.innerText = "171,924"; // All time events placeholder
-            loading.style.display = 'none';
-            table.style.display = 'table';
+        function calculateTrend(current, previous) {
+            if (previous === 0) return current > 0 ? "+100%" : "0%";
+            const change = ((current - previous) / previous) * 100;
+            const sign = change >= 0 ? "+" : "";
+            return `${sign}${change.toFixed(1)}%`;
         }
 
-        // Initialize
-        fetchLiveTotal();
-        fetchUsageData();
-        
-        // Refresh intervals
-        setInterval(fetchLiveTotal, 600000); 
-        setInterval(fetchUsageData, 3600000); // Check CSV every hour
+        function updateUI(curr, prev) {
+            // Update Numbers
+            document.getElementById('events-this-month').innerText = curr.events.toLocaleString();
+            document.getElementById('events-last-year').innerText = prev.events.toLocaleString();
+            document.getElementById('records-this-month').innerText = curr.records.toLocaleString();
+            document.getElementById('records-last-year').innerText = prev.records.toLocaleString();
+
+            // Update Trends
+            const eventTrend = calculateTrend(curr.events, prev.events);
+            const eventBadge = document.getElementById('events-trend');
+            eventBadge.innerText = eventTrend;
+            eventBadge.className = `trend-badge ${parseFloat(eventTrend) >= 0 ? 'trend-up' : 'trend-down'}`;
+
+            const recordTrend = calculateTrend(curr.records, prev.records);
+            const recordBadge = document.getElementById('records-trend');
+            recordBadge.innerText = recordTrend;
+            recordBadge.className = `trend-badge ${parseFloat(recordTrend) >= 0 ? 'trend-up' : 'trend-down'}`;
+
+            // Update Reason Table
+            const reasonBody = document.getElementById('reason-body');
+            const sortedReasons = Object.keys(curr.reasons).sort((a, b) => curr.reasons[b] - curr.reasons[a]);
+            
+            if (sortedReasons.length > 0) {
+                reasonBody.innerHTML = sortedReasons.map(r => `
+                    <tr>
+                        <td>${r}</td>
+                        <td style="text-align: right; font-weight: 600;">${curr.reasons[r].toLocaleString()}</td>
+                    </tr>
+                `).join('');
+            } else {
+                reasonBody.innerHTML = '<tr><td colspan="2" style="text-align:center;">No data found for this month.</td></tr>';
+            }
+
+            document.getElementById('last-update').innerText = 'Last Updated: ' + new Date().toLocaleTimeString();
+        }
+
+        function parseCSVLine(text) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                if (char === '"') inQuotes = !inQuotes;
+                else if (char === ',' && !inQuotes) {
+                    result.push(current.trim());
+                    current = '';
+                } else current += char;
+            }
+            result.push(current.trim());
+            return result;
+        }
+
+        processData();
     </script>
 </body>
 </html>
