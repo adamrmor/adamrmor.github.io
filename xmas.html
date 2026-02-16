@@ -4,69 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALA Collection Status - in22</title>
+    <!-- ALA Brand uses Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-bg: #0f172a;
-            --accent-gold: #ffd700;
-            --card-bg: rgba(30, 41, 59, 0.8);
-            --text-main: #f1f5f9;
-            --text-dim: #94a3b8;
-            --border-color: rgba(255, 215, 0, 0.2);
-            --success: #10b981;
-            --trend-up: #4ade80;
-            --trend-down: #f87171;
+            /* ALA Brand Colors */
+            --ala-charcoal: #212121;
+            --ala-orange: #E06E29;
+            --ala-bg-light: #F7F7F7;
+            --ala-white: #FFFFFF;
+            --ala-grey: #616161;
+            --ala-border: #E0E0E0;
+            
+            /* Trend Colors */
+            --trend-up: #2E7D32;
+            --trend-down: #C62828;
+            --trend-bg-up: #E8F5E9;
+            --trend-bg-down: #FFEBEE;
         }
 
         body {
-            background-color: var(--primary-bg);
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.3) 0, transparent 50%), 
-                radial-gradient(at 50% 0%, rgba(15, 23, 42, 1) 0, transparent 50%);
-            color: var(--text-main);
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--ala-bg-light);
+            color: var(--ala-charcoal);
+            font-family: 'Inter', -apple-system, sans-serif;
             margin: 0;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             padding: 20px;
         }
 
         .dashboard-container {
             max-width: 1000px;
+            width: 100%;
             margin: 0 auto;
         }
 
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px 0 20px 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--ala-border);
+        }
+
+        .ala-logo-img {
+            height: 80px; /* Larger height for the stacked logo */
+            display: block;
+        }
+
+        .portal-tag {
+            font-weight: 800;
+            font-size: 0.75rem;
+            color: var(--ala-grey);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            background: #eee;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
         .dashboard-card {
-            padding: 2rem;
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 1.5rem;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            background: var(--ala-white);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-top: 6px solid var(--ala-orange);
+            padding: 2.5rem;
             margin-bottom: 2rem;
         }
 
         .header {
-            text-align: center;
+            text-align: left;
             margin-bottom: 2.5rem;
         }
 
         .header-label {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent-gold);
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+            color: var(--ala-orange);
+            margin-bottom: 4px;
             display: block;
         }
 
-        h1 { font-size: 1.75rem; font-weight: 600; margin: 0; }
+        h1 { font-size: 2.25rem; font-weight: 800; margin: 0; color: var(--ala-charcoal); letter-spacing: -0.02em; }
         
         .month-focus-title {
-            text-align: center;
-            font-size: 1.25rem;
-            color: var(--accent-gold);
+            font-size: 1.1rem;
+            color: var(--ala-grey);
             margin-bottom: 2rem;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .month-focus-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background: var(--ala-orange);
         }
 
         .comparison-grid {
@@ -77,17 +119,24 @@
         }
 
         .comp-card {
-            background: rgba(15, 23, 42, 0.6);
+            background: var(--ala-white);
             padding: 1.5rem;
-            border-radius: 1.25rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid var(--ala-border);
+            transition: all 0.2s ease;
+        }
+
+        .comp-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            border-color: var(--ala-orange);
         }
 
         .comp-header {
-            font-size: 0.85rem;
-            color: var(--text-dim);
+            font-size: 0.8rem;
+            color: var(--ala-grey);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            font-weight: 700;
             margin-bottom: 1rem;
             display: flex;
             justify-content: space-between;
@@ -95,74 +144,92 @@
         }
 
         .main-val {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 800;
-            color: #fff;
+            color: var(--ala-charcoal);
             margin-bottom: 0.5rem;
+            letter-spacing: -0.03em;
         }
 
         .trend-badge {
             font-size: 0.85rem;
-            font-weight: 600;
-            padding: 4px 8px;
-            border-radius: 6px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 4px;
         }
 
-        .trend-up { background: rgba(16, 185, 129, 0.1); color: var(--trend-up); }
-        .trend-down { background: rgba(239, 68, 68, 0.1); color: var(--trend-down); }
+        .trend-up { background: var(--trend-bg-up); color: var(--trend-up); }
+        .trend-down { background: var(--trend-bg-down); color: var(--trend-down); }
 
         .sub-stats {
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--ala-border);
             display: flex;
             justify-content: space-between;
             font-size: 0.9rem;
         }
 
-        .sub-label { color: var(--text-dim); }
-        .sub-val { color: var(--text-main); font-weight: 600; }
+        .sub-label { color: var(--ala-grey); }
+        .sub-val { color: var(--ala-charcoal); font-weight: 700; }
 
         .usage-table-container {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 1rem;
+            background: var(--ala-bg-light);
+            border-radius: 8px;
             padding: 1.5rem;
             margin-top: 2rem;
         }
 
-        h2 { font-size: 1.1rem; color: var(--accent-gold); margin-top: 0; margin-bottom: 1rem; }
+        h2 { font-size: 1rem; color: var(--ala-charcoal); margin-top: 0; margin-bottom: 1.25rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
 
-        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; }
-        th { color: var(--text-dim); padding: 0.75rem; border-bottom: 1px solid var(--border-color); font-weight: 500; }
-        td { padding: 0.75rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.95rem; text-align: left; }
+        th { color: var(--ala-grey); padding: 0.75rem; border-bottom: 2px solid var(--ala-border); font-weight: 700; text-transform: uppercase; font-size: 0.75rem; }
+        td { padding: 1rem 0.75rem; border-bottom: 1px solid var(--ala-border); color: var(--ala-charcoal); }
+        tr:last-child td { border-bottom: none; }
 
         .status-footer {
             margin-top: 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.75rem;
-            color: var(--text-dim);
+            font-size: 0.8rem;
+            color: var(--ala-grey);
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--ala-border);
         }
 
         .status-indicator { display: flex; align-items: center; gap: 8px; }
-        .dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; box-shadow: 0 0 10px var(--success); }
+        .dot { width: 10px; height: 10px; background: var(--ala-orange); border-radius: 50%; animation: pulse 2s infinite; }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
+        }
 
         @media (max-width: 600px) {
+            .navbar { flex-direction: column; gap: 15px; }
             .comparison-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.75rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="dashboard-container">
+        <!-- ALA Navigation Style Header -->
+        <div class="navbar">
+            <img src="https://www.ala.org.au/app/uploads/2020/06/ALA_Logo_StackedTagline_RGB.png" alt="Atlas of Living Australia Logo" class="ala-logo-img">
+            <div class="portal-tag">Data Insights</div>
+        </div>
+
         <div class="dashboard-card">
             <div class="header">
-                <span class="header-label">Institutional Monthly Performance</span>
-                <h1>South Australian Museum (in22)</h1>
+                <span class="header-label">Institutional Collections</span>
+                <h1>South Australian Museum <span style="font-weight: 400; color: var(--ala-grey); font-size: 1.5rem;">(in22)</span></h1>
             </div>
 
-            <div class="month-focus-title" id="focus-date">February 2026 vs 2025</div>
+            <div class="month-focus-title" id="focus-date">February 2026 Comparison Summary</div>
             
             <div class="comparison-grid">
                 <!-- Events Comparison -->
@@ -173,7 +240,7 @@
                     </div>
                     <div id="events-this-month" class="main-val">0</div>
                     <div class="sub-stats">
-                        <span class="sub-label">This Month last year</span>
+                        <span class="sub-label">vs February 2025</span>
                         <span id="events-last-year" class="sub-val">0</span>
                     </div>
                 </div>
@@ -186,23 +253,23 @@
                     </div>
                     <div id="records-this-month" class="main-val">0</div>
                     <div class="sub-stats">
-                        <span class="sub-label">This Month last year</span>
+                        <span class="sub-label">vs February 2025</span>
                         <span id="records-last-year" class="sub-val">0</span>
                     </div>
                 </div>
             </div>
 
             <div class="usage-table-container">
-                <h2>Top Download Reasons (This Month)</h2>
+                <h2>Usage Breakdown <span style="font-weight: 400; color: var(--ala-grey);">(This Month)</span></h2>
                 <table id="reason-table">
                     <thead>
                         <tr>
-                            <th>Reason for Download</th>
-                            <th style="text-align: right;">Events</th>
+                            <th>Primary Reason for Download</th>
+                            <th style="text-align: right;">Total Events</th>
                         </tr>
                     </thead>
                     <tbody id="reason-body">
-                        <tr><td colspan="2" style="text-align:center; padding: 2rem; color: var(--text-dim);">Analyzing current usage...</td></tr>
+                        <tr><td colspan="2" style="text-align:center; padding: 2rem; color: var(--ala-grey);">Synchronizing live usage data...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -210,7 +277,7 @@
             <div class="status-footer">
                 <div class="status-indicator">
                     <div class="dot"></div>
-                    <span>Direct Comparison Active</span>
+                    <span>Connected to ALA Production Logs</span>
                 </div>
                 <span id="last-update">Syncing...</span>
             </div>
@@ -220,9 +287,9 @@
     <script>
         const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRKi-J7SQfuAHmb2XpMhRVZ_uVYrst6WhWwC3wVmHfyMN8eq8BRIEb3pL7qNFDpkvQjGBMoWA_tClR_/pub?gid=0&single=true&output=csv'; 
 
-        // Targeted focus: Feb 2026 vs Feb 2025
+        // Target: Feb 2026 vs Feb 2025
         const TARGET_YEAR = 2026;
-        const TARGET_MONTH = 2; // February
+        const TARGET_MONTH = 2;
 
         async function processData() {
             try {
@@ -243,14 +310,12 @@
                     const events = parseInt(row[3].replace(/[^0-9]/g, '')) || 0;
                     const records = parseInt(row[4]?.replace(/[^0-9]/g, '')) || 0;
 
-                    // Match This Month (2026-2)
                     if (year === TARGET_YEAR && month === TARGET_MONTH) {
                         statsThisMonth.events += events;
                         statsThisMonth.records += records;
                         statsThisMonth.reasons[reason] = (statsThisMonth.reasons[reason] || 0) + events;
                     }
 
-                    // Match Same Month Last Year (2025-2)
                     if (year === (TARGET_YEAR - 1) && month === TARGET_MONTH) {
                         statsLastYear.events += events;
                         statsLastYear.records += records;
@@ -261,7 +326,7 @@
 
             } catch (e) {
                 console.error("Data processing failed:", e);
-                document.getElementById('last-update').innerText = 'Data Sync Error';
+                document.getElementById('last-update').innerText = 'Data connection error';
             }
         }
 
@@ -273,13 +338,11 @@
         }
 
         function updateUI(curr, prev) {
-            // Update Numbers
             document.getElementById('events-this-month').innerText = curr.events.toLocaleString();
             document.getElementById('events-last-year').innerText = prev.events.toLocaleString();
             document.getElementById('records-this-month').innerText = curr.records.toLocaleString();
             document.getElementById('records-last-year').innerText = prev.records.toLocaleString();
 
-            // Update Trends
             const eventTrend = calculateTrend(curr.events, prev.events);
             const eventBadge = document.getElementById('events-trend');
             eventBadge.innerText = eventTrend;
@@ -290,22 +353,21 @@
             recordBadge.innerText = recordTrend;
             recordBadge.className = `trend-badge ${parseFloat(recordTrend) >= 0 ? 'trend-up' : 'trend-down'}`;
 
-            // Update Reason Table
             const reasonBody = document.getElementById('reason-body');
             const sortedReasons = Object.keys(curr.reasons).sort((a, b) => curr.reasons[b] - curr.reasons[a]);
             
             if (sortedReasons.length > 0) {
                 reasonBody.innerHTML = sortedReasons.map(r => `
                     <tr>
-                        <td>${r}</td>
-                        <td style="text-align: right; font-weight: 600;">${curr.reasons[r].toLocaleString()}</td>
+                        <td style="text-transform: capitalize;">${r}</td>
+                        <td style="text-align: right; font-weight: 700;">${curr.reasons[r].toLocaleString()}</td>
                     </tr>
                 `).join('');
             } else {
-                reasonBody.innerHTML = '<tr><td colspan="2" style="text-align:center;">No data found for this month.</td></tr>';
+                reasonBody.innerHTML = '<tr><td colspan="2" style="text-align:center;">No data records found for current month.</td></tr>';
             }
 
-            document.getElementById('last-update').innerText = 'Last Updated: ' + new Date().toLocaleTimeString();
+            document.getElementById('last-update').innerText = 'Data synchronized: ' + new Date().toLocaleTimeString();
         }
 
         function parseCSVLine(text) {
